@@ -2,8 +2,6 @@ import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 const gallery = document.querySelector(".gallery");
 
-console.log(galleryItems);
-
 const markup = galleryItems
   .map(
     (image) =>
@@ -26,6 +24,7 @@ liItems.forEach((item) => {
     lightbox.show();
   });
   document.addEventListener("keydown", (e) => {
+  
     if (e.key === "Escape") {
       lightbox.close();
     }

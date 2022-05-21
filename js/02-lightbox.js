@@ -24,5 +24,5 @@ liItems.forEach((item) => {
 
 var lightbox = new SimpleLightbox(".gallery__item", {
   captionsData: "alt",
-  captionDelay: 250
+  captionDelay: 250,
 });
