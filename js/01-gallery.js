@@ -24,7 +24,6 @@ liItems.forEach((item) => {
     lightbox.show();
   });
   document.addEventListener("keydown", (e) => {
-  
     if (e.key === "Escape") {
       lightbox.close();
     }
