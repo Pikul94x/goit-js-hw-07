@@ -1,28 +1,32 @@
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
+
+// console.log(galleryItems);
+
 const gallery = document.querySelector(".gallery");
 
 const markup = galleryItems
-  .map(
-    (image) =>
-      `<a class="gallery__item" href="${image.original}">
-  <img class="gallery__image" src="${image.preview}" alt="${image.description}" />
+	.map(
+		item => `<a class="gallery__item" href="${item.original}">
+  <img class="gallery__image" src="${item.preview}" alt="${item.description}" />
 </a>`
-  )
-
-  .join("");
+	)
+	.join("");
 
 gallery.insertAdjacentHTML("beforeend", markup);
 
-const liItems = document.querySelectorAll(".gallery__link");
-
-liItems.forEach((item) => {
-  item.addEventListener("click", (e) => {
-    e.preventDefault();
-  });
+const lightbox = new SimpleLightbox(".gallery a", {
+	captionsData: "alt",
+	captionDelay: 250,
 });
 
-var lightbox = new SimpleLightbox(".gallery__item", {
-  captionsData: "alt",
-  captionDelay: 250,
-});
+
+// // forEach
+
+// const liItems = document.querySelectorAll(".gallery__link");
+
+// liItems.forEach(item => {
+// 	item.addEventListener("click", e => {
+// 		e.preventDefault();
+// 	});
+// });
