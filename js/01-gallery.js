@@ -1,55 +1,41 @@
 import { galleryItems } from "./gallery-items.js";
-// Change code below this line
 
-// console.log(galleryItems);
+// Change code below this line
 
 const gallery = document.querySelector(".gallery");
 
-const markup = galleryItems
+const handle = galleryItems
 	.map(
-		item => `<div class="gallery__item">
-  <a class="gallery__link" href="${item.original}">
+		({ original, preview, description }) =>
+			`<div class="gallery__item">
+  <a class="gallery__link" href="${original}">
     <img
       class="gallery__image"
-      src="${item.preview}"
-      data-source="${item.original}"
-      alt="${item.description}"
+      src="${preview}"
+      data-source="${original}"
+      alt="${description}"
     />
   </a>
 </div>`
 	)
 	.join("");
 
-gallery.insertAdjacentHTML("beforeend", markup);
+gallery.insertAdjacentHTML("beforeend", handle);
 
-gallery.addEventListener("click", e => {
+document.addEventListener("click", e => {
+	console.log(e);
 	e.preventDefault();
-
-	if (e.target.nodeName !== "IMG") return;
+	if (e.target.className !== "gallery__image") return;
 
 	const instance = basicLightbox.create(`
-    <img src="${e.target.dataset.source}" width="800" height="600">
+    <img src="${e.target.dataset.source}">
 `);
 
 	instance.show();
 
-	document.addEventListener("keydown", e => {
-		if (e.key === "Escape") {
+	document.addEventListener("keyup", e => {
+		if (e.code === "Escape") {
 			instance.close();
 		}
 	});
 });
-
-// // oneClick function
-
-// gallery.onclick = (e) => {
-//     e.preventDefault()
-
-// 	basicLightbox
-// 		.create(
-// 			`
-// 		<img width="1400" height="900" src="${e.target.dataset.source}">
-// 	`
-// 		)
-// 		.show();
-// };
